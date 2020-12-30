@@ -25,9 +25,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBSBSMS], [
 
    dnl see if libsbsms is available locally
 
-   AC_CHECK_FILE(${srcdir}/lib-src/sbsms/include/sbsms.h,
-                 LIBSBSMS_LOCAL_AVAILABLE="yes",
-                 LIBSBSMS_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/sbsms/include/sbsms.h], [LIBSBSMS_LOCAL_AVAILABLE=yes])
 
    if test "$LIBSBSMS_LOCAL_AVAILABLE" = "yes"; then
       dnl do not build programs we don't need

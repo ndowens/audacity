@@ -25,9 +25,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBSOXR], [
 
    dnl see if libsoxr is available locally
 
-   AC_CHECK_FILE(${srcdir}/lib-src/libsoxr/src/soxr.h,
-                 LIBSOXR_LOCAL_AVAILABLE="yes",
-                 LIBSOXR_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/libsoxr/src/soxr.h], [LIBSOXR_LOCAL_AVAILABLE=yes])
 
    if test "$LIBSOXR_LOCAL_AVAILABLE" = "yes"; then
       # Breaks other other libraries in Audacity tree; but why is ./configure

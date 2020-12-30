@@ -24,9 +24,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_PORTSMF], [
       AC_MSG_NOTICE([portSMF library is NOT available as system library])
    fi
 
-   AC_CHECK_FILE(${srcdir}/lib-src/portsmf/allegro.h,
-                 PORTSMF_LOCAL_AVAILABLE="yes",
-                 PORTSMF_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/portsmf/allegro.h], [PORTSMF_LOCAL_AVAILABLE=yes])
 
    if test "$PORTSMF_LOCAL_AVAILABLE" = "yes"; then
       AC_MSG_NOTICE([portSMF library is available in the local tree])

@@ -25,9 +25,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBSNDFILE], [
 
    dnl see if libsndfile is available in the local tree
 
-   AC_CHECK_FILE(${srcdir}/lib-src/libsndfile/src/sndfile.h.in,
-                 LIBSNDFILE_LOCAL_AVAILABLE="yes",
-                 LIBSNDFILE_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/libsndfile/src/sndfile.h.in], [LIBSNDFILE_LOCAL_AVAILABLE=yes])
 
    if test "$LIBSNDFILE_LOCAL_AVAILABLE" = "yes"; then
       AC_MSG_NOTICE([libsndfile libraries are available in this source tree])

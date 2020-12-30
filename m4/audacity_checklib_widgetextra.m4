@@ -28,9 +28,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_WIDGETEXTRA], [
 
    dnl see if libwidgetextra is available locally
 
-   AC_CHECK_FILE(${srcdir}/lib-src/lib-widget-extra/NonGuiThread.h,
-                 WIDGETEXTRA_LOCAL_AVAILABLE="yes",
-                 WIDGETEXTRA_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/lib-widget-extra/NonGuiThread.h], [WIDGETEXTRA_LOCAL_AVAILABLE=yes])
 
    if test "$WIDGETEXTRA_LOCAL_AVAILABLE" = "yes"; then
       AC_MSG_NOTICE([libwidgetextra library is available in the local tree])

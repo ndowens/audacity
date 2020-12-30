@@ -40,9 +40,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBSOUNDTOUCH], [
 
    dnl see if libsoundtouch is available locally
 
-   AC_CHECK_FILE(${srcdir}/lib-src/soundtouch/include/SoundTouch.h,
-                 LIBSOUNDTOUCH_LOCAL_AVAILABLE="yes",
-                 LIBSOUNDTOUCH_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/soundtouch/include/SoundTouch.h], [LIBSOUNDTOUCH_LOCAL_AVAILABLE=yes])
 
    if test "$LIBSOUNDTOUCH_LOCAL_AVAILABLE" = "yes"; then
       AC_MSG_NOTICE([libsoundtouch libraries are available in the local tree])

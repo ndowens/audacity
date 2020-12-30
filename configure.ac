@@ -63,7 +63,7 @@ AC_PROG_CXXCPP
 AM_PROG_AR
 
 LT_INIT([disable-shared])
-
+m4_pattern_allow([^AC_LANG])
 AC_PROG_INSTALL
 dnl pkg-config is required for lots of things
 AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, yes, no)
@@ -214,7 +214,7 @@ if test x$enable_sse = xyes; then
       AX_CHECK_COMPILER_FLAGS(-msse, [SBSMS_CFLAGS="$SBSMS_CFLAGS -msse"],[AC_MSG_ERROR([Need a version of gcc with -msse])])
    fi
 
-   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <xmmintrin.h>]], [[__m128 v,w; float p[8]; v = _mm_loadu_ps(p); _mm_storeu_ps(p,v); w = _mm_loadl_pi(w,(const __m64*)p); w = _mm_loadh_pi(w,(const __m64*)p); _mm_storel_pi((__m64 *)p, w); _mm_storeh_pi((__m64 *)p, w); v = _mm_add_ps(v,w); v = _mm_sub_ps(v,w); v = _mm_mul_ps(v,w); v = _mm_shuffle_ps(v,w,_MM_SHUFFLE(0,1,2,3)); w = _mm_set1_ps(0.0f);]])], [sse_ok=yes], [sse_ok=no])
+   AC_TRY_COMPILE([AC_LANG_PROGRAM([[#include <xmmintrin.h>]], [[__m128 v,w; float p[8]; v = _mm_loadu_ps(p); _mm_storeu_ps(p,v); w = _mm_loadl_pi(w,(const __m64*)p); w = _mm_loadh_pi(w,(const __m64*)p); _mm_storel_pi((__m64 *)p, w); _mm_storeh_pi((__m64 *)p, w); v = _mm_add_ps(v,w); v = _mm_sub_ps(v,w); v = _mm_mul_ps(v,w); v = _mm_shuffle_ps(v,w,_MM_SHUFFLE(0,1,2,3)); w = _mm_set1_ps(0.0f);]])], [sse_ok=yes], [sse_ok=no])
 
    if test x$sse_ok = xyes; then
       AC_DEFINE(ENABLE_SSE,1,[Define to enable sse])

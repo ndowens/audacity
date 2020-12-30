@@ -30,13 +30,9 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBVORBIS], [
 
    dnl see if Vorbis is available in the source dir
 
-   AC_CHECK_FILE(${srcdir}/lib-src/libvorbis/include/vorbis/vorbisenc.h,
-                 vorbisenc_h_available="yes",
-                 vorbisenc_h_available="no")
+   AS_IF([test -f ${srcdir}/lib-src/libvorbis/include/vorbis/vorbisenc.h], [vorbisenc_h_available=yes])
 
-   AC_CHECK_FILE(${srcdir}/lib-src/libogg/include/ogg/ogg.h,
-                 ogg_h_available="yes",
-                 ogg_h_available="no")
+   AS_IF([test -f ${srcdir}/lib-src/libogg/include/ogg/ogg.h], [ogg_h_available=yes])
 
    if test "$vorbisenc_h_available" = "yes" -a "$ogg_h_available" = "yes"; then
       LIBVORBIS_LOCAL_AVAILABLE="yes"

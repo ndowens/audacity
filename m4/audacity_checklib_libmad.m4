@@ -34,9 +34,7 @@ AC_DEFUN([AUDACITY_CHECKLIB_LIBMAD], [
 
    dnl see if libmad is available in the local tree
 
-   AC_CHECK_FILE(${srcdir}/lib-src/libmad/frame.h,
-                 LIBMAD_LOCAL_AVAILABLE="yes",
-                 LIBMAD_LOCAL_AVAILABLE="no")
+   AS_IF([test -f ${srcdir}/lib-src/libmad/frame.h], [LIBMAD_LOCAL_AVAILABLE=yes])
 
    if test "$LIBMAD_LOCAL_AVAILABLE" = "yes"; then
       AC_MSG_NOTICE([libmad libraries are available in the local tree])
